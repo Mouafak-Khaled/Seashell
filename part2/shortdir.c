@@ -66,11 +66,11 @@ int main(int argc, char *argv[]) {
         if (strcmp("pwd", argv[1]) == 0) pwd();
         else printf("Not a valid argument\n");
     } else {
-        if (strcmp("set", argv[2]) == 0) setDir(argv[3], r);
-        else if (strcmp("jump", argv[2]) == 0) jump(argv[3], r);
-        else if (strcmp("del", argv[2]) == 0) del(argv[3], r);
-        else if (strcmp("clear", argv[2]) == 0) fclose(fopen("list.txt", "w"));
-        else if (strcmp("list", argv[2]) == 0) printList(r);
+        if (strcmp("set", argv[1]) == 0) setDir(argv[3], r);
+        else if (strcmp("jump", argv[1]) == 0) jump(argv[3], r);
+        else if (strcmp("del", argv[1]) == 0) del(argv[3], r);
+        else if (strcmp("clear", argv[1]) == 0) fclose(fopen("list.txt", "w"));
+        else if (strcmp("list", argv[1]) == 0) printList(r);
         else printf("Not a valid argument\n");
     }
 
