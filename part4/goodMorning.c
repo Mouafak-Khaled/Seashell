@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int mainx(int argc, char **argv) {
+int main(int argc, char **argv) {
     if (argc <= 2) printf("no valid input!\n");
     else {
         FILE *j = fopen("job", "w");

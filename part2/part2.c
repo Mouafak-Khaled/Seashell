@@ -57,7 +57,7 @@ void jump(char *name, FILE *r) {
     }
 }
 
-int main2(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     FILE *a = fopen("list.txt", "a");
     FILE *r = fopen("list.txt", "r");
 
