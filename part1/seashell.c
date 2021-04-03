@@ -405,11 +405,19 @@ int process_command(struct command_t *command)
 void executeCommand(char *command, char **argv)
 {
 
+	 int exists;
+	 struct stat buffer;
 
+	 char cuurentPath [200];
+     getcwd(cuurentPath, 200);
+     //printf("%s\n", strcat(strcat(cuurentPath, "/"), command));
+	char *fullCWP = strcat(strcat(cuurentPath, "/"), command);
+	if(stat(fullCWP, &buffer) == 0){
+		execvp(fullCWP, argv);
+	} else {
 
+	
     char* fullPath = getenv( "PATH" );
-    struct stat buffer;
-    int exists;
     char fullfilename[1024];
 
     char *token = strtok(fullPath, ":");
@@ -427,6 +435,6 @@ void executeCommand(char *command, char **argv)
         token = strtok(NULL, ":"); /* next token */
      }
 
-	
+	}
 				
 }

@@ -2,18 +2,18 @@
 #include <string.h>
 #include<unistd.h>
 
-void pwd() {
-    char buf[100];
-    getcwd(buf, 100);
-    printf("%s\n", buf);
-}
-
 void printList(FILE *pFile) {
     char c = fgetc(pFile);
     while (c != EOF) {
         printf("%c", c);
         c = fgetc(pFile);
     }
+}
+
+void pwd() {
+    char buf[100];
+    getcwd(buf, 100);
+    printf("%s\n", buf);
 }
 
 void del(char *name, FILE *r) {
@@ -43,18 +43,27 @@ void setDir(char *name, FILE *r) {
 
 void jump(char *name, FILE *r) {
     char *in;
+    char *a;
+    char *pch;
     size_t len = 0;
+    int alias = 0;
     while (getline(&in, &len, r) != -1) {
-        char *pch = strtok(in, " ");
+        pch = strtok(in, " ");
         if (strcmp(pch, name) == 0) {
             printf("old directory: "), pwd();
-            char* a = strtok(NULL, " ");
+            a = strtok(NULL, " ");
             a[strlen(a) - 1] = 0;
             chdir(a);
             printf("moved to: "), pwd();
+            alias = 1;
             break;
         }
     }
+    if(alias == 0){
+        chdir(name);
+        printf("moved to: "), pwd();
+    }
+
 }
 
 int main(int argc, char *argv[]) {
@@ -62,18 +71,20 @@ int main(int argc, char *argv[]) {
     FILE *r = fopen("list.txt", "r");
 
     if (argc < 2) { printf("Arguments expected.\n"); }
-    else if (argc == 2) {
-        if (strcmp("pwd", argv[1]) == 0) pwd();
-        else printf("Not a valid argument\n");
-    } else {
-        if (strcmp("set", argv[1]) == 0) setDir(argv[3], r);
-        else if (strcmp("jump", argv[1]) == 0) jump(argv[3], r);
-        else if (strcmp("del", argv[1]) == 0) del(argv[3], r);
-        else if (strcmp("clear", argv[1]) == 0) fclose(fopen("list.txt", "w"));
+    else {
+        if (strcmp("set", argv[1]) == 0) {
+            if (argv[2] == NULL) printf("Arguments expected.\n");
+            else setDir(argv[2], r);
+        } else if (strcmp("jump", argv[1]) == 0) {
+            if (argv[2] == NULL) printf("Arguments expected.\n");
+            else jump(argv[2], r);
+        } else if (strcmp("del", argv[1]) == 0) {
+            if (argv[2] == NULL) printf("Arguments expected.\n");
+            else del(argv[2], r);
+        } else if (strcmp("clear", argv[1]) == 0) fclose(fopen("list.txt", "w"));
         else if (strcmp("list", argv[1]) == 0) printList(r);
         else printf("Not a valid argument\n");
     }
-
     fflush(a), fflush(r), fclose(r), fclose(a);
 
     return 0;
