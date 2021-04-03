@@ -405,6 +405,8 @@ int process_command(struct command_t *command)
 void executeCommand(char *command, char **argv)
 {
 
+
+
     char* fullPath = getenv( "PATH" );
     struct stat buffer;
     int exists;
@@ -413,18 +415,18 @@ void executeCommand(char *command, char **argv)
     char *token = strtok(fullPath, ":");
 
     /* walk through other tokens */
-    while( token != NULL )
-    {
+     while(token != NULL)
+     {
         sprintf(fullfilename, "%s/%s", token, command);
-        exists = stat( fullfilename, &buffer );
-        if ( exists == 0 && ( S_IFREG & buffer.st_mode ) ) {
+        exists = stat(fullfilename, &buffer);
+        if (exists == 0 && ( S_IFREG & buffer.st_mode ) ) {
 			 execv(fullfilename, argv);
             break;
         }
 
         token = strtok(NULL, ":"); /* next token */
-    }
-				
+     }
 
-    
+	
+				
 }
