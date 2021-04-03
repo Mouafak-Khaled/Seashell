@@ -1,0 +1,1 @@
+42 12 * * * DISPLAY=:0.0 rhythmbox-client --play file.mp3
