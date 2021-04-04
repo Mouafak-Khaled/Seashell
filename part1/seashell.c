@@ -361,7 +361,6 @@ int process_command(struct command_t *command) {
     }
 
     if (strcmp(command->name, "shortdir") == 0 && strcmp(command->args[0], "jump") == 0) {
-        printf("we are heeere");
         char path[258];
         strcpy(path, getenv("HOME"));
         strcat(path, "/Documents/paths.txt");
