@@ -57,6 +57,7 @@ void highlightWord(char *fileName, char *word, char* color)
 
                 if(strcmp(color, "r") == 0){
                   printf("%s%s%s ", RED, token,COLOR_RESET); 
+                  
                 
                 } else if(strcmp(color, "g") == 0){
                   printf("%s%s%s ", GREEN, token,COLOR_RESET); 
@@ -66,8 +67,9 @@ void highlightWord(char *fileName, char *word, char* color)
 
                 }
 
-            }
+            } else {
              printf( "%s ", token );
+            }
     
              token = strtok(NULL, " ");
         }

@@ -29,7 +29,7 @@ int main(int arg, char **args){
 
         int index = getTimeZoneIndex(args[1]);
         if(index == -1){
-          puts("Invalid Time Zone Name!");
+          printf("%s", "Invalid Time Zone Name!");
         }
         
         printTime(index);
