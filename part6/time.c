@@ -19,7 +19,7 @@ int getTimeZoneIndex(char *timeZone);
 
 int main(int arg, char **args){
 
-     if(arg < 2)
+     if(arg > 2)
        return -1;
 
     if(args[1]  == NULL){
