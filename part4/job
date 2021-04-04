@@ -1,1 +1,1 @@
-42 12 * * * DISPLAY=:0.0 rhythmbox-client --play file.mp3
+05 21 * * * DISPLAY=:0.0 rhythmbox-client --play /home/sarieh/CLionProjects/Seashell/file.mp3
